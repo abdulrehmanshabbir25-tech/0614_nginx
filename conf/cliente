@@ -1,0 +1,22 @@
+server {
+    listen 8081;
+    server_name cliente.localhost;
+    root /var/www/cliente;
+    index index.html;
+
+    error_page 404 /404.html;
+
+    location = /404.html { internal; }
+
+    location / {
+        try_files $uri $uri/ =404;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /descargas/ {
+	alias /var/www/compartido/apuntes/;
+        autoindex on;
+    }
+    
+}
+
